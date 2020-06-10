@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const hbs = require('hbs')
+const course_list = require('./utils/course_list');
 const app = express()
 
 const publicDirectoryPath = path.join(__dirname, '../public');
@@ -14,8 +15,10 @@ hbs.registerPartials(partialsPath);
 
  app.use(express.static(publicDirectoryPath));
 
- app.get('',(req,res) =>{
-   res.render('index')
+
+
+ app.get('',(req,res,next) =>{
+   res.render('index',course_list)
  })
 
 app.listen(3000, () =>{
