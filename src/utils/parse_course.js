@@ -14,33 +14,61 @@ var url_list=["https://www.udemy.com/course/react-the-complete-guide-incl-redux/
               "https://www.udemy.com/course/creativity-and-innovation-for-business/"]
 
 var new_l=[]
-function my_detail(new_l,url_list,callback) {
 
-  for (var i=0,l=url_list.length;i<l;i++){
+for (var i=0,l=url_list.length;i<l;i++){
+  p=request(url_list[i],my_detail)
+  new_l.push(p)
 
-  request(url_list[i],(err, resp, html) =>{
-    if (!err && resp.statusCode == 200){
-      const $ = cheerio.load(html);
-      const siteHeading = $('.row');
+}
 
-      const output = siteHeading.find('h1').text();
+async function my_detail(err,resp,html){
+  if (!err && resp.statusCode == 200){
+    const $ = await cheerio.load(html);
+    const siteHeading = $('.row');
+
+    const output = siteHeading.find('h1').text().replace("\n",'');
 
 
-      image = $('.introduction-asset img').attr('src')
-      console.log(image)
-      console.log(output)
+    const image = $('.introduction-asset img').attr('src')
+    console.log(image)
+    console.log(output)
 
-       var details=({
-        img:image,
-        name:output
-      })
+
+     const details={
+      img:image,
+      name:output
     }
-    new_l.push(details)
+      return details
+  }
 
-  })
 }
-return new_l
-}
-my_detail(new_l,url_list,function(response){
-  console.log(new_l)
-})
+
+// function my_detail(new_l,url_list) {
+//
+//   for (var i=0,l=url_list.length;i<l;i++){
+//
+//   request(url_list[i],(err, resp, html) =>{
+//     if (!err && resp.statusCode == 200){
+//       const $ = cheerio.load(html);
+//       const siteHeading = $('.row');
+//
+//       output = siteHeading.find('h1').text().replace("\n",'');
+//
+//
+//       image = $('.introduction-asset img').attr('src')
+//       console.log(image)
+//       console.log(output)
+//
+//
+//        var details={
+//         img:image,
+//         name:output
+//       }
+//
+//     }
+//   })
+// }
+// return new_l
+// }
+// const item=my_detail(new_l,url_list)
+// console.log(item)
