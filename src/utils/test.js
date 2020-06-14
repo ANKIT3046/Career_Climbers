@@ -67,4 +67,4 @@ async function my_detail(html,url){
 //   module.exports = new_l;
 //
 // },4000)
- module.exports={getDataFromURL}
+ module.exports= {getDataFromURL}
