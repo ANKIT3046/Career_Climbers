@@ -31,6 +31,8 @@ app.get('',(req,res,next) =>{
     res.render('index',course_list)
 })
 
+
+// this is for posting course of your choice to the database by admin
 app.post('/courses', async (req,res) =>{
   // console.log(req.body)
   // res.send('testing')
@@ -44,7 +46,7 @@ app.post('/courses', async (req,res) =>{
   }
 })
 
-
+// this is for rendring the course details on page here i use common link which use previeously to store in database
 app.get('/courses', async (req,res,next) =>{
 
   try {
@@ -60,7 +62,7 @@ app.get('/courses', async (req,res,next) =>{
   }
 })
 
-
+// this for deleting perticuler course from databse by admin 
 
 app.delete('/courses/:id', async (req,res) =>{
   try{
