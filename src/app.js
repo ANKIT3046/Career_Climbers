@@ -44,15 +44,23 @@ app.post('/courses', async (req,res) =>{
   }
 })
 
-app.get('/courses', async (req,res) =>{
+
+app.get('/courses', async (req,res,next) =>{
 
   try {
     const course =await Courses.find({})
-    res.send(course)
+    //res.send(course)
+    //console.log(course)
+    let list={cu:course}
+    //console.log(abc)
+    res.render('additional_course',list)
+
   } catch (e){
     res.status(500).send()
   }
 })
+
+
 
 app.delete('/courses/:id', async (req,res) =>{
   try{
