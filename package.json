@@ -16,6 +16,6 @@
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
     "request": "^2.88.2",
-    "validator": "^13.1.1"
+    "validator": "^13.7.0"
   }
 }
